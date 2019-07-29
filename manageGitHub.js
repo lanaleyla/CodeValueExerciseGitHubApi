@@ -26,12 +26,17 @@ function printUsers(usersList)
 function addUsers (name,imageUrl,repositoryLink,userPageLink) { 
 
     const div=document.querySelector(".results");
+    const divUserUnit=document.createElement("div");
     const divUser = document.createElement("div");
+    const divImage=document.createElement("div");
+    const divBtn=document.createElement("div");
+    divBtn.setAttribute("class","btnLinks");
 
     //user information
     const node = document.createTextNode(name);
     const userName=document.createElement("p");
-    divUser.appendChild(node);
+    userName.setAttribute("class","userName");
+    userName.appendChild(node);
 
     const userImage=document.createElement("img");
     userImage.setAttribute("class","userImage");
@@ -39,6 +44,7 @@ function addUsers (name,imageUrl,repositoryLink,userPageLink) {
     userImage.setAttribute("alt", "user");
 
     const repoLink=document.createElement("a");
+    repoLink.setAttribute("class","linkToButton");
     //console.log(repositoryLink);
     repoLink.setAttribute("href","");
     repoLink.addEventListener("click", addRepositories);
@@ -50,15 +56,25 @@ function addUsers (name,imageUrl,repositoryLink,userPageLink) {
 
     const userPage=document.createElement("a");
     const userText=document.createTextNode("User Page");
+    userPage.setAttribute("target","_blank");
     userPage.setAttribute("href",userPageLink);
+    userPage.setAttribute("class","linkToButton");
     userPage.appendChild(userText);
-    
-    divUser.setAttribute("class","user");
+    divBtn.appendChild(userPage);
+    divBtn.appendChild(repoLink);
+
+    divUserUnit.setAttribute("class","user");
+    divUser.setAttribute("class","user2");
     divUser.appendChild(userName);
-    divUser.appendChild(userImage);
-    divUser.appendChild(repoLink);
-    divUser.appendChild(userPage); 
-    div.appendChild(divUser);
+
+    //divUser.appendChild(userImage);
+    divImage.appendChild(userImage);
+    //divUser.appendChild(repoLink);
+    //divUser.appendChild(userPage);
+    divUser.appendChild(divBtn);
+    divUserUnit.appendChild(divImage); 
+    divUserUnit.appendChild(divUser);
+    div.appendChild(divUserUnit);
 }
 
 function addRepositories(event)
