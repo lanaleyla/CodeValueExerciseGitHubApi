@@ -11,26 +11,63 @@ header{
     padding: 0 0 10px 0;
 }
 
-div{
-    padding: 10px 0px 10px 0px;
-}
-
 .container{
     display: flex;
     flex-flow: column;
 }
 
 .userImage{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
 }
 
+.linkToButton{
+    width: 150px;
+    padding: 10px;
+    margin: 5px 5px 5px 0px;
+    border-radius: 3px;
+    background-color: #058585;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+}
 .user{
-    border: 2px solid #125c56;
-    width: 250px;
-    height: 150px; 
+    border: 1.5px solid #525353;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 20px 20px 20px 0px;
+    width: 500px; 
+    display: flex;
+    flex-flow: row;
+}
+
+.user2{
+    padding: 0px 10px 0px 20px;
+}
+
+.results{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.userName{
+    font-size: 25px;
+    color: #007179;
+    margin: 0 !important;
+}
+/*   background-color: #cbdbd7;*/
+
+.btnstyle{
+    width: 100px;
+    background-color:  #cbdbd7;
+}
+
+.btnLinks{
+    padding: 10px 0 0 0;
     display: flex;
     flex-flow: column;
+    flex-wrap: wrap;
 }
 
 .hide{
