@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>GitHub search</title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    </head>
-    <body>
-        <header>GitHub Viewer</header>
-        <div class=container>
-            <div class="search">
-                <input id="name" type="text" placeholder="Enter your Name..." required/> 
-                <button type="button" onclick="searchUsers()">Search</button>
-            </div>
-            <div class="results"></div>
-            <div class="repositories"></div>
-            <button class="btnstyle" type="button">Back</button>
+
+<head>
+    <title>GitHub search</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <header>GitHub Viewer</header>
+    <div class="container">
+        <div class="search">
+            <input id="name" type="text" placeholder="Enter your Name..." required />
+            <button type="button" onclick="searchUsers()">Search</button>
         </div>
-        
-        <script src="manageGitHub.js"></script>
-    </body>
+        <div class="repositoryTitle"></div>
+        <div class="results"></div>
+        <div class="repositories">
+           
+        </div>
+        <button class="backButton" onclick="hideRepositories()" type="button"
+        style="visibility: hidden">Back</button>
+
+    </div>
+
+    <script src="manageGitHub.js"></script>
+</body>
 
 </html>

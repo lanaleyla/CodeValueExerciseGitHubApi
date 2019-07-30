@@ -16,21 +16,20 @@ header{
     flex-flow: column;
 }
 
-.userImage{
-    height: 150px;
-    width: 150px;
+/*user list*/ 
+.results{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
 }
 
-.linkToButton{
-    width: 150px;
-    padding: 10px;
-    margin: 5px 5px 5px 0px;
-    border-radius: 3px;
-    background-color: #058585;
-    color: #ffffff;
-    text-decoration: none;
-    text-align: center;
+/*repositories list*/ 
+.repositories{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
 }
+
 .user{
     border: 1.5px solid #525353;
     border-radius: 3px;
@@ -41,14 +40,8 @@ header{
     flex-flow: row;
 }
 
-.user2{
+.userInfo{
     padding: 0px 10px 0px 20px;
-}
-
-.results{
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
 }
 
 .userName{
@@ -56,11 +49,53 @@ header{
     color: #007179;
     margin: 0 !important;
 }
-/*   background-color: #cbdbd7;*/
 
-.btnstyle{
-    width: 100px;
-    background-color:  #cbdbd7;
+.userImage{
+    height: 150px;
+    width: 150px;
+}
+
+.repository{
+    border: 1.5px solid #525353;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 20px 20px 20px 0px;
+    width: 500px; 
+    display: flex;
+    flex-flow: column;
+}
+
+.repoData{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    font-size: 18px;
+    color: #007179;
+}
+
+/*added to button*/
+.linkToButton{
+    width: 150px;
+    padding: 10px;
+    margin: 5px 5px 5px 0px;
+    border-radius: 3px;
+    border-style: unset;
+    background-color: #058585;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.backButton{
+    width: 150px;
+    padding: 10px;
+    margin: 5px 5px 5px 0px;
+    border-radius: 3px;
+    border-style: unset;
+    background-color: #058585;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
 }
 
 .btnLinks{
@@ -70,6 +105,6 @@ header{
     flex-wrap: wrap;
 }
 
-.hide{
-    visibility: hidden;
+.pFix{
+    margin: 5px !important;
 }
