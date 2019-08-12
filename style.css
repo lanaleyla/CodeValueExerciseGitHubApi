@@ -1,71 +1,80 @@
-
-body{
+body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin: 5px 5px 5px 5px ;
+    margin: 5px 5px 5px 5px;
     padding: 0 10% 0 10%;
 }
 
-header{
+header {
+    display: inline-block !important;
     font-size: 40px;
     color: #00795b;
     padding: 0 0 10px 0;
 }
 
-.container{
+.container {
     display: flex;
     flex-flow: column;
 }
 
-/*user list*/ 
-.results{
+/*user list*/
+
+.results {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
 }
 
-/*repositories list*/ 
-.repositories{
+/*repositories list*/
+
+.repositories {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
 }
 
-.user{
+/*user box*/
+
+.user {
     border: 1.5px solid #525353;
     border-radius: 3px;
     padding: 10px;
     margin: 20px 20px 20px 0px;
-    width: 500px; 
+    width: 500px;
     display: flex;
     flex-flow: row;
 }
 
-.userInfo{
+.userInfo {
     padding: 0px 10px 0px 20px;
 }
 
-.userName{
+.userName {
     font-size: 25px;
     color: #007179;
     margin: 0 !important;
 }
 
-.userImage{
+.userImage {
     height: 150px;
     width: 150px;
 }
 
-.repository{
+.userImg {
+    height: 150px;
+    width: 150px;
+}
+
+.repository {
     border: 1.5px solid #525353;
     border-radius: 3px;
     padding: 10px;
     margin: 20px 20px 20px 0px;
-    width: 500px; 
+    width: 520px;
     display: flex;
     flex-flow: column;
 }
 
-.repoData{
+.repoData {
     display: flex;
     flex-flow: column;
     flex-wrap: wrap;
@@ -74,7 +83,8 @@ header{
 }
 
 /*added to button*/
-.linkToButton{
+
+.linkToButton {
     width: 150px;
     padding: 10px;
     margin: 5px 5px 5px 0px;
@@ -86,7 +96,7 @@ header{
     text-align: center;
 }
 
-.backButton{
+.backButton {
     width: 150px;
     padding: 10px;
     margin: 5px 5px 5px 0px;
@@ -98,13 +108,30 @@ header{
     text-align: center;
 }
 
-.btnLinks{
+/*buttons that direct to the user page*/
+
+.btnLinks {
     padding: 10px 0 0 0;
     display: flex;
     flex-flow: column;
     flex-wrap: wrap;
 }
 
-.pFix{
+.repositoryUrl {
     margin: 5px !important;
+}
+
+.UserImageHeader {
+    visibility: hidden;
+    width: 100px;
+    height: 100px;
+}
+
+/*user name when clicking to see the repository list*/
+
+.repoTitle {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

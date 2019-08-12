@@ -9,6 +9,7 @@ function searchUsers() {
         .then(data => {
             console.log(data);
             d = data;
+            popPrevUsers();
             showUsers(data);
         })
         .catch(error => console.error(error))
@@ -19,6 +20,7 @@ function searchRepos(event) {
     fetch(`https://api.github.com/users/${event.target.id}/repos`) //get the choosen users repositories list
         .then(response => response.json())
         .then(data => {
+            changeHeader(event.target.id);
             showRepositories(data); //call to function that gets the information needed to show on view
         })
         .catch(error => console.error(error))
@@ -26,6 +28,11 @@ function searchRepos(event) {
 
 //print the users
 function showUsers(usersList) {
+
+    //delete previews user search if exist
+    if (document.querySelectorAll('.user').length > 0) {
+        Array.from(document.querySelectorAll('.user')).forEach(el => el.remove());
+    }
     for (let i = 0; i < 30; i++) //print first 30 results related to the user name 
     {
         const name = usersList["items"][i]["login"]; //location name
@@ -34,9 +41,15 @@ function showUsers(usersList) {
         const imageUrl = usersList["items"][i]["avatar_url"];
         addUsers(name, imageUrl, repositoryLink, userPageLink); //add element to html page
     }
+
 }
 
+//build repository view with repositories list from the user
 function showRepositories(usersList) {
+
+    const search = document.querySelector(".search");  //hide input
+    search.setAttribute("style", "visibility: hidden;");
+
     for (let i = 0; i < usersList.length; i++) {
         const repositoryFullName = usersList[i]["full_name"];
         const privateStatus = usersList[i]["private"];
@@ -47,21 +60,22 @@ function showRepositories(usersList) {
     }
 
     //show back button and show repository div
-    const Results = document.querySelector(".repositories");  //hide results div
+    const Results = document.querySelector(".repositories");  //show repositories view
     Results.setAttribute("style", "visibility: visible;");
-    const button = document.querySelector(".backButton");  //hide results div
+    const button = document.querySelector(".backButton");  //show back button
     button.setAttribute("style", "visibility: visible;");
 }
 
+//add a user to the users view as a result of user search
 function addUsers(name, imageUrl, repositoryLink, userPageLink) {
 
     images.push({ name, imageUrl }); //in case of reposetories click we need image and name of user
 
-    const div = document.querySelector(".results"); //users list
-    const divUserUnit = document.createElement("div");//warps the user with a border 
-    const divUser = document.createElement("div"); //holds specific user
-    const divImage = document.createElement("div");//holds the users image
-    const divBtn = document.createElement("div"); //holds user page and repository link
+    const div = document.querySelector(".results");    //users list
+    const divUserUnit = document.createElement("div"); //warps the user with a border 
+    const divUser = document.createElement("div");     //holds specific user
+    const divImage = document.createElement("div");    //holds the users image
+    const divBtn = document.createElement("div");      //holds user page and repository link
     divBtn.setAttribute("class", "btnLinks");
 
     //user information
@@ -96,6 +110,7 @@ function addUsers(name, imageUrl, repositoryLink, userPageLink) {
     divBtn.appendChild(userPage);
     divBtn.appendChild(repoLink);
 
+    //set  design
     divUserUnit.setAttribute("class", "user");
     divUser.setAttribute("class", "userInfo");
     divUser.appendChild(userName);
@@ -105,19 +120,19 @@ function addUsers(name, imageUrl, repositoryLink, userPageLink) {
     divUserUnit.appendChild(divImage);
     divUserUnit.appendChild(divUser);
     div.appendChild(divUserUnit);
-}
 
+}
 
 //add repositories to the index.html page
 function addRepositories(repositoryFullName, privateStatus, numOfForks, numOfWatchers, linkUrlToRepos) {
 
-    const divResults = document.querySelector(".results");  //hide results div
+    const divResults = document.querySelector(".results"); //hide results div
     divResults.setAttribute("style", "visibility: hidden; height:0;");
 
-    const div = document.querySelector(".repositories"); //holds the list of the repositories
-    const divRepoData = document.createElement("div");
-    const divRepository = document.createElement("div");//holds the specific repository
-    divRepoData.setAttribute("class", "repoData"); //holds info about the repository
+    const div = document.querySelector(".repositories");  //holds the list of the repositories
+    const divRepoData = document.createElement("div");    //holds the details of the repository
+    const divRepository = document.createElement("div");  //holds the specific repository
+    divRepoData.setAttribute("class", "repoData");        //holds info about the repository
     divRepository.setAttribute("class", "repository");
 
     //url of repository
@@ -125,7 +140,7 @@ function addRepositories(repositoryFullName, privateStatus, numOfForks, numOfWat
     const userText = document.createTextNode(`URL: ${linkUrlToRepos}`);
     repositoryPage.setAttribute("target", "_blank");
     repositoryPage.setAttribute("href", linkUrlToRepos);
-    repositoryPage.setAttribute("class", "pFix");
+    repositoryPage.setAttribute("class", "repositoryUrl");
     repositoryPage.appendChild(userText);
 
     //full name of repository
@@ -137,19 +152,19 @@ function addRepositories(repositoryFullName, privateStatus, numOfForks, numOfWat
     //repository status (private: true || false)
     const private = document.createTextNode(`Private: ${privateStatus}`);
     const privateS = document.createElement("p");
-    privateS.setAttribute("class", "pFix");
+    privateS.setAttribute("class", "repositoryUrl");
     privateS.appendChild(private);
 
     //number of forks
     const forks = document.createTextNode(`Forks: ${numOfForks}`);
     const forksCount = document.createElement("p");
-    forksCount.setAttribute("class", "pFix");
+    forksCount.setAttribute("class", "repositoryUrl");
     forksCount.appendChild(forks);
 
     //number of watchers
     const watchers = document.createTextNode(`Watchers: ${numOfWatchers}`);
     const watchersCount = document.createElement("p");
-    watchersCount.setAttribute("class", "pFix");
+    watchersCount.setAttribute("class", "repositoryUrl");
     watchersCount.appendChild(watchers);
 
     divRepository.appendChild(repositoryName);
@@ -163,12 +178,68 @@ function addRepositories(repositoryFullName, privateStatus, numOfForks, numOfWat
 
 //hide the repository div
 function hideRepositories() {
-    const Results = document.querySelector(".repositories");  //hide repositories div
-    Results.setAttribute("style", "visibility: hidden; height:0;");
+    Array.from(document.querySelectorAll('.repository')).forEach(el => el.remove()); //clean exsisting repositories list
 
     const divResults = document.querySelector(".results");  //show results div
     divResults.setAttribute("style", "visibility: visible;");
 
+    const search = document.querySelector(".search");  //show results div
+    search.setAttribute("style", "visibility: visible;");
+
     const button = document.querySelector(".backButton");  //hide back button
     button.setAttribute("style", "visibility: hidden;");
+
+
+    const repoText = document.querySelector(".name") //remove user name text
+    repoText.remove();
+
+    const userImg=document.querySelector(".userImg"); //remove user image
+    userImg.remove();
+
+    const title = document.querySelector(".titlel"); //show main title("GitHubViewer")
+    title.setAttribute("style", "visibility: visible;")
+}
+
+
+//change header when repositories view opens
+function changeHeader(Username) {
+    let url;
+    console.log(Username);
+    console.log(images);
+    for (let i = 0; i < images.length; i++) { //find users image url
+        if (images[i].name === Username) {
+            url = images[i].imageUrl;
+        }
+    }
+
+    //hide github viewer
+    const hrTXT = document.querySelector(".titlel");
+    hrTXT.setAttribute("style", "visibility: hidden; height:0;");
+   
+
+    const repoTitleDiv = document.querySelector(".repoTitle")
+
+    //create element image to set the user image
+    const userImage = document.createElement("img");
+    userImage.setAttribute("class", "userImg");
+    userImage.setAttribute("src", url);
+    userImage.setAttribute("alt", Username);
+    repoTitleDiv.appendChild(userImage);
+
+    //create div for the user name
+    const headerTXT = document.createElement("div");
+    headerTXT.setAttribute("class", "name");
+    headerTXT.innerText = Username;
+    repoTitleDiv.appendChild(headerTXT);
+    repoTitleDiv.setAttribute("style", "visibility: visible;")
+
+}
+
+//clean user list
+function popPrevUsers() {
+    if (images.length > 0) {
+        for (let i = 0; i < images.length; i++) {
+            images.pop();
+        }
+    }
 }

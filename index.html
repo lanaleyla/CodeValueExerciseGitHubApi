@@ -8,7 +8,10 @@
 </head>
 
 <body>
-    <header>GitHub Viewer</header>
+    <header>
+        <div class="titlel">GitHub Viewer</div>
+        <div class="repoTitle"></div>
+    </header>
     <div class="container">
         <div class="search">
             <input id="name" type="text" placeholder="Enter your Name..." required />
@@ -17,11 +20,9 @@
         <div class="repositoryTitle"></div>
         <div class="results"></div>
         <div class="repositories">
-           
-        </div>
-        <button class="backButton" onclick="hideRepositories()" type="button"
-        style="visibility: hidden">Back</button>
 
+        </div>
+        <button class="backButton" onclick="hideRepositories()" type="button" style="visibility: hidden">Back</button>
     </div>
 
     <script src="manageGitHub.js"></script>
