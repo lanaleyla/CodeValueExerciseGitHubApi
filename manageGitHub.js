@@ -20,7 +20,7 @@ function searchRepos(event) {
     fetch(`https://api.github.com/users/${event.target.id}/repos`) //get the choosen users repositories list
         .then(response => response.json())
         .then(data => {
-            changeHeader(event.target.id);
+            changeHeader(event.target.id,data.length);
             showRepositories(data); //call to function that gets the information needed to show on view
         })
         .catch(error => console.error(error))
@@ -202,7 +202,7 @@ function hideRepositories() {
 
 
 //change header when repositories view opens
-function changeHeader(Username) {
+function changeHeader(Username,numberOfRepos) {
     let url;
     console.log(Username);
     console.log(images);
@@ -229,7 +229,7 @@ function changeHeader(Username) {
     //create div for the user name
     const headerTXT = document.createElement("div");
     headerTXT.setAttribute("class", "name");
-    headerTXT.innerText = Username;
+    headerTXT.innerText = `${Username} (${numberOfRepos})`;
     repoTitleDiv.appendChild(headerTXT);
     repoTitleDiv.setAttribute("style", "visibility: visible;")
 
